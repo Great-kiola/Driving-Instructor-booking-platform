@@ -12,4 +12,5 @@ so i set out to create something better.
 
 
 ## Dependencies
-Frontend: react, tailwind, google fonts, axios, moment, react-hot-toast ,react-icons, react-router-dom, recharts 
+Frontend: react, tailwind, google fonts, axios, moment, react-hot-toast, react-icons, react-router-dom, recharts 
+Backend: express, jsonwebtoken, mongoose, multer, bcryptjs, cors, dotenv, exceljs 

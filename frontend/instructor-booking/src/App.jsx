@@ -1,14 +1,21 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom"
-import Dashboard from "./pages/Admin/Dashboard"
+import PrivateRoute from './routes/PrivateRoute'
+
+// Auth Imports
 import Login from "./pages/Auth/Login"
 import SignUp from "./pages/Auth/Signup"
+
+// Admin Routes
+import Dashboard from "./pages/Admin/Dashboard"
 import ManageTasks from "./pages/Admin/ManageTasks"
 import CreateTasks from "./pages/Admin/CreateTasks"
 import ManageUsers from "./pages/Admin/ManageUsers"
 
 // User Routes
 import UserDashboard from "./pages/User/UserDashboard"
+import MyTasks from "./pages/User/MyTasks"
+import ViewTaskDetaiils from "./pages/User/ViewTaskDetails"
 
 
 const App = () => {
@@ -31,6 +38,8 @@ const App = () => {
           {/* User Routes */}
           <Route element={<PrivateRoute allowedRoles={["user"]} />} >
             <Route path='/user/dashboard' element={<UserDashboard />} />
+            <Route path='/user/tasks' element={<MyTasks />} />
+            <Route path='/user/task-details/:id' element={<ViewTaskDetaiils />} />
           </Route> 
 
         </Routes>
@@ -41,5 +50,3 @@ const App = () => {
 
 export default App
 
-
-21:20 
