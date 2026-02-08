@@ -10,6 +10,4 @@ router.post("/login", loginUser); // Login user
 router.get("/profile", protect, getUserProfile); // Get user profile
 router.put("/profile", protect, updateUserProfile); // Update user profile
 
-
-
 module.exports = router;
