@@ -34,7 +34,7 @@ const registerUser = async (req, res) => {
             email,
             password: hashedPassword,
             role,
-            profileImageUrl
+            profileImageUrl,
         });
 
         // respond with user data and token
