@@ -6,16 +6,6 @@ const Task = require("../models/Task");
 // @access Private
 const getTasks = async (req, res) => {
     try {
-    } catch (error) {
-        res.status(500).json({ message: "Server error", error: error.message });
-    }
-}
-
-// @desc Get task by ID (Admin: any task, User: only assigned tasks)
-// @route GET /api/tasks/:id
-// @access Private
-const getTaskById = async (req, res) => {
-    try {
         const { status } = req.query;
         let filter = {}
 
@@ -76,7 +66,16 @@ const getTaskById = async (req, res) => {
                 completedTasks,
             },
         });
+    } catch (error) {
+        res.status(500).json({ message: "Server error", error: error.message });
+    }
+}
 
+// @desc Get task by ID (Admin: any task, User: only assigned tasks)
+// @route GET /api/tasks/:id
+// @access Private
+const getTaskById = async (req, res) => {
+    try {
     } catch (error) {
         res.status(500).json({ message: "Server error", error: error.message });
     }
