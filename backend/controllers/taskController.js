@@ -153,6 +153,13 @@ const updateTask = async (req, res) => {
 // @access Private/Admin
 const deleteTask = async (req, res) => {
     try {
+        const task = await Task.findById(req.params.id);
+
+        if (!task) return res.status(404).json({ message: "Task not found" });
+
+        await task.deleteOne();
+        res.json({ message: "Task deleted successfully" });
+
     } catch (error) {
         res.status(500).json({ message: "Server error", error: error.message });
     }
@@ -164,6 +171,28 @@ const deleteTask = async (req, res) => {
 // @access Private
 const updateTaskStatus = async (req, res) => {
     try {
+        const task = await Task.findById(req.params.id);
+
+        if (!task) return res.status(404).json({ message: "Task not found" });
+
+        const isAssigned = task.assignedTo.some(
+            (userId) => userId.toString() === req.user._id.toString()
+        );
+
+        if (!isAssigned && req.user.role !== "instructor") {
+            return res.status(403).json({ message: "Not authorized to update this task's status" });
+        }
+
+        task.status = req.body.status || task.status;
+
+        if (task.status === "completed") {
+            task.todoChecklist.forEach(item => item.completed = true);
+            task.progress = 100;
+        }
+
+        await task.save();
+        res.json({ message: "Task status updated successfully", task });
+
     } catch (error) {
         res.status(500).json({ message: "Server error", error: error.message });
     }
@@ -174,6 +203,34 @@ const updateTaskStatus = async (req, res) => {
 // @access Private
 const updateTaskChecklist = async (req, res) => {
     try {
+        const { todoChecklist } = req.body;
+        const task = await Task.findById(req.params.id);
+
+        if (!task) return res.status(404).json({ message: "Task not found" });
+
+        if (!task.assignedTo.includes(req.user._id) && req.user.role !== "instructor") {
+            return res.status(403).json({ message: "Not authorized to update this task's checklist" });
+        }
+
+        task.todoChecklist = todoChecklist; //Replace with updated checklist
+
+        const completedCount = task.todoChecklist.filter(item => item.completed).length;
+        const totalItems = task.todoChecklist.length;
+        task.progress = totalItems > 0 ? Math.round((completedCount / totalItems) * 100) : 0;
+
+        if (task.progress === 100) {
+            task.status = "completed";
+        } else if (task.progress > 0) {
+            task.status = "in-progress";
+        } else {
+            task.status = "pending";
+        }
+
+        await task.save();
+        const updatedTask = await Task.findById(req.params.id).populate("assignedTo", "name email profileImageUrl");
+
+        res.json({ message: "Task checklist updated successfully", task:updatedTask });
+
     } catch (error) {
         res.status(500).json({ message: "Server error", error: error.message });
     }
