@@ -55,6 +55,28 @@ const getTaskById = async (req, res) => {
             ...(req.user.role === "instructor" ? {} : { assignedTo: req.user._id })
         });
 
+        const inProgressTasks = await Task.countDocuments({
+            ...filter,
+            status: "in-progress",
+            ...(req.user.role === "instructor" ? {} : { assignedTo: req.user._id })
+        });
+
+        const completedTasks = await Task.countDocuments({
+            ...filter,
+            status: "completed",
+            ...(req.user.role === "instructor" ? {} : { assignedTo: req.user._id })
+        });
+
+        res.json({
+            tasks,
+            statusSummary: {
+                all: allTasks,
+                pendingTasks,
+                inProgressTasks,
+                completedTasks,
+            },
+        });
+
     } catch (error) {
         res.status(500).json({ message: "Server error", error: error.message });
     }
