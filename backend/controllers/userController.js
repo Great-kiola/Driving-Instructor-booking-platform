@@ -62,4 +62,4 @@ const getUserById = async (req, res) => {
 
 
 
-module.exports = { getUsers, getUserById, deleteUser };
+module.exports = { getUsers, getUserById };
