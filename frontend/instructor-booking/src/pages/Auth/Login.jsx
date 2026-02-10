@@ -29,8 +29,6 @@ const Login = () => {
 
     // Login API call
 
-
-
   };
 
   return (
