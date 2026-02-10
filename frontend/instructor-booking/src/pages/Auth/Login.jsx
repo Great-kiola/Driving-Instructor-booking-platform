@@ -2,6 +2,7 @@ import AuthLayout from "../../components/layouts/AuthLayout";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../../components/inputs/Input";
+import { validateEmail } from "../../utils/helper";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -28,7 +29,7 @@ const Login = () => {
 
     // Login API call
 
-    
+
 
   };
 
