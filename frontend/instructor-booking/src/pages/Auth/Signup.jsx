@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import AuthLayout from "../../components/layouts/AuthLayout";
 import { validateEmail } from "../../utils/helper";
+import ProfilePhotoSelector from "../../components/inputs/ProfilePhotoSelector";
+import Input from "../../components/inputs/Input";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   const [profilePic, setProfilePic] = useState(null);
@@ -45,7 +48,54 @@ const Signup = () => {
         <form onSubmit={handleSignUp}>
           <ProfilePhotoSelector image={profilePic} setImage={setProfilePic} />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+          <div className="grid-cols-1 md:grid-cols-2 gap-4">
+            <Input
+              value={fullName}
+              onChange={({ target }) => setFullName(target.value)}
+              label="Full Name"
+              placeholder="John"
+              type="text"
+            />
+
+            <Input
+              value={email}
+              onChange={({ target }) => setEmail(target.value)}
+              label="Email Address"
+              placeholder="ola@example.com"
+              type="text"
+            />
+
+            <Input
+              value={password}
+              onChange={({ target }) => setPassword(target.value)}
+              label="Password"
+              placeholder="min 8 characters"
+              type="password"
+            />
+
+            <Input
+              value={adminInviteToken}
+              onChange={({ target }) => setAdminInviteToken(target.value)}
+              label="Admin Invite Token"
+              placeholder="5 Digit Code"
+              type="text"
+            />
+
+            {error && <p className="text-red-500 text-xs pb-2">{error}</p>}
+
+            <button type="submit" className="btn-primary">
+              SIGNUP
+            </button>
+
+            <p className="text-[13px] text-slate-800 mt-3">
+              Already have an account ?{" "}
+              <Link className="font-medium text-primary underline" to="/login">
+                Log-in
+              </Link>
+            </p>
+
+
+          </div>
         </form>
       </div>
     </AuthLayout>
