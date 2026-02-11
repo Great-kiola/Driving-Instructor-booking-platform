@@ -26,5 +26,14 @@ export const API_PATHS = {
 
         UPDATE_TASK_STATUS: (taskId) => `/api/tasks/${taskId}/status`,
         UPDATE_TODO_CHECKLIST: (taskId) => `/api/tasks/${taskId}/todo`,
+    },
+
+    REPORTS: {
+        EXPORT_TASKS: "/api/reports/export/tasks",
+        EXPORT_USERS: "/api/reports/export/users",
+    },
+
+    IMAGE: {
+        UPLOAD_IMAGE: "api/auth/upload-image",
     }
 }
