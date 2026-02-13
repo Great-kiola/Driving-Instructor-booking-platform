@@ -19,14 +19,14 @@ const Signup = () => {
 
   const [error, setError] = useState(null);
 
-  const {updateUser} = useContext(UserContext);
+  const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   // Handle signup  form submit
   const handleSignUp = async (e) => {
     e.preventDefault();
 
-    let profileImageUrl = '';
+    let profileImageUrl = "";
 
     if (!fullName) {
       setError("Please enter fullname");
@@ -46,7 +46,6 @@ const Signup = () => {
 
     // signup API call
     try {
-
       // Upload profile picture if selected
 
       if (profilePic) {
@@ -63,21 +62,18 @@ const Signup = () => {
       });
 
       const { token, role } = response.data;
-      
-      if (token){
+
+      if (token) {
         localStorage.setItem("token", token);
         updateUser(response.data);
-        
+
         // Redirect based on role
-        if(role === "instructor"){
-          navigate("/Admin/dashboard")
+        if (role === "instructor") {
+          navigate("/Admin/dashboard");
         } else {
-          navigate("/User/dashboard")
+          navigate("/User/dashboard");
         }
       }
-
-
-
     } catch (error) {
       if (error.response && error.response.data.message) {
         setError(error.response.data.message);
