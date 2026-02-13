@@ -3,7 +3,11 @@ import AuthLayout from "../../components/layouts/AuthLayout";
 import { validateEmail } from "../../utils/helper";
 import ProfilePhotoSelector from "../../components/inputs/ProfilePhotoSelector";
 import Input from "../../components/inputs/Input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axiosInstance from "../../utils/axiosInstance";
+import { API_PATHS } from "../../utils/apiPaths";
+import { useContext } from "react";
+import { UserContext } from "../../context/userContext";
 
 const Signup = () => {
   const [profilePic, setProfilePic] = useState(null);
@@ -13,6 +17,9 @@ const Signup = () => {
   const [adminInviteToken, setAdminInviteToken] = useState("");
 
   const [error, setError] = useState(null);
+
+  const {updateUser} = useContext(UserContext);
+  const navigate = useNavigate();
 
   // Handle signup  form submit
   const handleSignUp = async (e) => {
@@ -35,6 +42,38 @@ const Signup = () => {
     setError("");
 
     // signup API call
+    try {
+      const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
+        name: fullName,
+        email,
+        password,
+        // profilePic,
+        adminInviteToken,
+      });
+
+      const { token, role } = response.data;
+      
+      if (token){
+        localStorage.setItem("token", token);
+        updateUser(response.data);
+        
+        // Redirect based on role
+        if(role === "instructor"){
+          navigate("/Admin/dashboard")
+        } else {
+          navigate("/User/dashboard")
+        }
+      }
+
+
+
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError("Something went wrong. Please try again.");
+      }
+    }
   };
 
   return (
@@ -93,8 +132,6 @@ const Signup = () => {
                 Log-in
               </Link>
             </p>
-
-
           </div>
         </form>
       </div>
