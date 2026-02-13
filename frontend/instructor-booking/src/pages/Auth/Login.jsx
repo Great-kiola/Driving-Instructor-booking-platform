@@ -44,9 +44,9 @@ const Login = () => {
 
         // Redirect based on role
         if(role === "instructor"){
-          navigate("/admin/dashboard")
+          navigate("/Admin/dashboard")
         } else {
-          navigate("/user/dashboard")
+          navigate("/User/dashboard")
         }
       }
     } catch (error){

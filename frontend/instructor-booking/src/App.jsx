@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import PrivateRoute from './routes/PrivateRoute'
+import UserProvider from './context/userContext';
 
 // Auth Imports
 import Login from "./pages/Auth/Login"
@@ -20,6 +21,7 @@ import ViewTaskDetaiils from "./pages/User/ViewTaskDetails"
 
 const App = () => {
   return (
+    <UserProvider>
     <div>
       <Router>
         <Routes>
@@ -45,6 +47,7 @@ const App = () => {
         </Routes>
       </Router>
     </div>
+    </UserProvider>
   )
 }
 
