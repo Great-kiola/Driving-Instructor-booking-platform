@@ -1,7 +1,7 @@
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, Outlet} from "react-router-dom"
 import PrivateRoute from './routes/PrivateRoute'
-import UserProvider from './context/userContext';
+import UserProvider, { UserContext } from './context/userContext';
 
 // Auth Imports
 import Login from "./pages/Auth/Login"
@@ -17,6 +17,7 @@ import ManageUsers from "./pages/Admin/ManageUsers"
 import UserDashboard from "./pages/User/UserDashboard"
 import MyTasks from "./pages/User/MyTasks"
 import ViewTaskDetaiils from "./pages/User/ViewTaskDetails"
+import { useContext } from 'react';
 
 
 const App = () => {
@@ -44,6 +45,10 @@ const App = () => {
             <Route path='/user/task-details/:id' element={<ViewTaskDetaiils />} />
           </Route> 
 
+
+          {/* Default Route */}
+          <Route path="/" element={<Root />} />
+
         </Routes>
       </Router>
     </div>
@@ -53,3 +58,14 @@ const App = () => {
 
 export default App
 
+const Root = () => {
+  const { user, loading } = useContext(UserContext);
+
+  if (loading) return <Outlet />;
+
+  if (!user) {
+    return <Navigate to="/login" />
+  }
+
+  return user.role === "instructor" ? <Navigate to="/admin/dashboard" /> : <Navigate to="/user/dashboard" />
+}
