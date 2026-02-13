@@ -5,12 +5,16 @@ import Input from "../../components/inputs/Input";
 import { validateEmail } from "../../utils/helper";
 import axiosInstance from "../../utils/axiosInstance"
 import { API_PATHS } from "../../utils/apiPaths";
+// import User from "../../../../../backend/models/User";
+import { useContext } from "react";
+import { UserContext } from "../../context/userContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   // Handle login form submit
@@ -41,12 +45,13 @@ const Login = () => {
 
       if(token){
         localStorage.setItem("token", token);
+        updateUser(response.data);
 
         // Redirect based on role
         if(role === "instructor"){
-          navigate("/Admin/dashboard")
+          navigate("/admin/dashboard")
         } else {
-          navigate("/User/dashboard")
+          navigate("/user/dashboard")
         }
       }
     } catch (error){
