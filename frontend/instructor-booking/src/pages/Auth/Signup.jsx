@@ -8,6 +8,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 import { useContext } from "react";
 import { UserContext } from "../../context/userContext";
+import uploadImage from "../../utils/uploadImage";
 
 const Signup = () => {
   const [profilePic, setProfilePic] = useState(null);
@@ -24,6 +25,8 @@ const Signup = () => {
   // Handle signup  form submit
   const handleSignUp = async (e) => {
     e.preventDefault();
+
+    let profileImageUrl = '';
 
     if (!fullName) {
       setError("Please enter fullname");
@@ -43,11 +46,19 @@ const Signup = () => {
 
     // signup API call
     try {
+
+      // Upload profile picture if selected
+
+      if (profilePic) {
+        const imgUploadRes = await uploadImage(profilePic);
+        profileImageUrl = imgUploadRes.imageUrl || "";
+      }
+
       const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
         name: fullName,
         email,
         password,
-        // profilePic,
+        profileImageUrl,
         adminInviteToken,
       });
 
