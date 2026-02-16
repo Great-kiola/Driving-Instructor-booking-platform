@@ -68,7 +68,7 @@ const Sidemenu = ({activeMenu}) => {
           <item.icon className="" />
           {item.label}
         </button>
-      })};
+      })}
     </div>
   
 }
