@@ -7,8 +7,6 @@ const Dashboard = () => {
   useUserAuth();
 
   const {user} = useContext(UserContext);
-
-
   return (
     <DashboardLayout>Dashboard</DashboardLayout>
   )

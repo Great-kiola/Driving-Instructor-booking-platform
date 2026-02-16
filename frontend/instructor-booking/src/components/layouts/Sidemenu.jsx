@@ -3,7 +3,7 @@ import { UserContext } from '../../context/userContext'
 import { SIDE_MENU_DATA, SIDE_MENU_DATA_USER } from '../../utils/data';
 import { useNavigate } from "react-router-dom";
 
-const Sidemenu = ({activeMenu}) => {
+const SideMenu = ({activeMenu}) => {
 
   const {user, clearUser } = useContext(UserContext);
   const [sideMenuData, setSideMenuData] =  useState([]);
@@ -26,7 +26,7 @@ const Sidemenu = ({activeMenu}) => {
 
   useEffect(() => {
     if(user){
-      setSideMenuData(user?.role === 'admin' ? SIDE_MENU_DATA : SIDE_MENU_DATA_USER)
+      setSideMenuData(user?.role === 'instructor' ? SIDE_MENU_DATA : SIDE_MENU_DATA_USER)
     }
 
     return () => {};
@@ -42,7 +42,7 @@ const Sidemenu = ({activeMenu}) => {
         />
       </div>
 
-      {user?.role === "admin" && (
+      {user?.role === "instructor" && (
         <div className='text-[10px] font-medium text-white bg-primary px-3 py-0.5 rounded mt-1'>
           Instructor
         </div>
@@ -55,7 +55,7 @@ const Sidemenu = ({activeMenu}) => {
       <p className='text-[12px] text-gray-500'> {user?.email || ""} </p>
     </div>
 
-      {sideMenuData.map((item, index) => {
+      {sideMenuData.map((item, index) => (
         <button
           key={`menu_${index}`}
           className={`w-full flex items-center gap-4 text-[15px] ${
@@ -68,9 +68,9 @@ const Sidemenu = ({activeMenu}) => {
           <item.icon className="text-xl" />
           {item.label}
         </button>
-      })}
+      ))}
     </div>
   
 }
 
-export default Sidemenu
+export default SideMenu

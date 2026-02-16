@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route, Outlet} from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, Outlet, Navigate} from "react-router-dom"
 import PrivateRoute from './routes/PrivateRoute'
 import UserProvider, { UserContext } from './context/userContext';
 

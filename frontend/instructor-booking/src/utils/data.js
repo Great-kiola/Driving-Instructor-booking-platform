@@ -4,7 +4,7 @@ import {
     LuClipboardCheck,
     LuSquarePlus,
     LuLogOut,
-  } from "react-icons/lu";
+} from "react-icons/lu";
 
 
 export const SIDE_MENU_DATA = [
@@ -24,6 +24,7 @@ export const SIDE_MENU_DATA = [
         id: "03",
         label: "Create Task",
         path: "/admin/create-task",
+        icon: LuSquarePlus,
     },
     {
         id: "04",
@@ -61,14 +62,14 @@ export const SIDE_MENU_DATA_USER = [
 ]
 
 export const PRIORITY_DATA = [
-    {label: "Low", value: "Low"},
-    {label: "Medium", value: "Medium"},
-    {label: "High", value: "High"},
+    { label: "Low", value: "Low" },
+    { label: "Medium", value: "Medium" },
+    { label: "High", value: "High" },
 ]
 
 export const STATUS_DATA = [
-    {label: "Pending", value: "Pending"},
-    {label: "In Progress", value: "In Progress"},
-    {label: "Completed", value: "Completed"},
+    { label: "Pending", value: "Pending" },
+    { label: "In Progress", value: "In Progress" },
+    { label: "Completed", value: "Completed" },
 ]
 
