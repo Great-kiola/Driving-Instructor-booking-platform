@@ -32,7 +32,7 @@ const Sidemenu = ({activeMenu}) => {
     return () => {};
   }, [user]);
 
-  return <div className=''>
+  return <div className='w-64 h-[calc(100vh-61px)] bg-white border-r border-gray-200/50 sticky top-15.25 z-20 ' >
     <div className=''>
       <div className=''>
         <img 
