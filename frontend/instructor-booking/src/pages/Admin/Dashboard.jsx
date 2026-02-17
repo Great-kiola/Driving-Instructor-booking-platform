@@ -115,7 +115,6 @@ const Dashboard = () => {
 
         <CustomPieChart
           data={pieChartData}
-          label="Total Balance"
           colors={COLORS}
         />
         </div>
