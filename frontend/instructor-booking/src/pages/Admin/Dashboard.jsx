@@ -10,6 +10,10 @@ import { addThousandSeparator } from '../../utils/helper';
 import InfoCard from '../../components/cards/InfoCard';
 import { LuArrowRight } from 'react-icons/lu';
 import TaskListTable from '../../components/TaskListTable';
+import CustomPieChart from '../../components/Charts/CustomPieChart';
+
+
+const COLORS = ["#8D551FF", "#00B8D8", "#7BCE00"];
 
 const Dashboard = () => {
   useUserAuth();
