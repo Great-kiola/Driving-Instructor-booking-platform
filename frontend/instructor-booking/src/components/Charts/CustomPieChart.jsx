@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CustomPieChart = () => {
+const CustomPieChart = ({data, colors}) => {
   return (
     <div>CustomPieChart</div>
   )
