@@ -11,6 +11,7 @@ import InfoCard from "../../components/cards/InfoCard";
 import { LuArrowRight } from "react-icons/lu";
 import TaskListTable from "../../components/TaskListTable";
 import CustomPieChart from "../../components/Charts/CustomPieChart";
+import CustomBarChart from "../../components/Charts/CustomBarChart";
 
 const COLORS = ["#8D551FF", "#00B8D8", "#7BCE00"];
 
