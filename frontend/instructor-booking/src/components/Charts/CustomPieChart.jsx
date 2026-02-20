@@ -6,6 +6,8 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
+import CustomTooltip from "./CustomTooltip";
+import CustomLegend from "./CustomLegend";
 
 const CustomPieChart = ({ data, colors }) => {
   // Inject colors directly into the data
@@ -27,8 +29,8 @@ const CustomPieChart = ({ data, colors }) => {
           innerRadius={100}
           labelLine={false}
         />
-        <Tooltip />
-        <Legend />
+        <Tooltip content={<CustomTooltip />} />
+        <Legend content={<CustomLegend />}/>
       </PieChart>
     </ResponsiveContainer>
   );
