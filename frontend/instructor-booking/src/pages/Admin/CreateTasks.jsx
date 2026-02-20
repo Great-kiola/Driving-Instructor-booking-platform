@@ -86,6 +86,20 @@ const CreateTasks = () => {
                 }
               />
             </div>
+
+            <div className="">
+                <label className="">
+                  Description
+                </label>
+
+                <textarea
+                placeholder="Describe Task"
+                className=""
+                rows={4}
+                value={taskData.description}
+                onChange={({target}) => handleValueChange("description", target.value)}
+                />
+            </div>
           </div>
         </div>
       </div>
