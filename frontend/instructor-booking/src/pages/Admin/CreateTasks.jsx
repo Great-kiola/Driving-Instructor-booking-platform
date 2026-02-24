@@ -9,6 +9,7 @@ import moment from "moment";
 import { LuTrash2 } from "react-icons/lu";
 import SelectDropdown from "../../components/inputs/SelectDropdown";
 import SelectUsers from "../../components/inputs/SelectUsers";
+import TodoListInput from "../../components/inputs/TodoListInput";
 
 const CreateTasks = () => {
   const location = useLocation();
@@ -152,7 +153,16 @@ const CreateTasks = () => {
               </div>
             </div>
 
-            
+            <div className="mt-3">
+              <label className="text-xs font--medium text-slate-600">
+                TODO CheckList
+              </label>
+
+              <TodoListInput
+                todoList={taskData?.todoChecklist}
+                setToodoList={(value) => handleValueChange("todoChecklist", value)}
+              />
+            </div>
           </div>
         </div>
       </div>
