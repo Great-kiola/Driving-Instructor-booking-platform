@@ -26,12 +26,35 @@ const ManageTasks = () => {
 
       // Map statusSummary data with fixed labels and order
       const statusSummary = response.data?.statusSummary || {};
+
+      // Old??
+      // const statusArray = [
+      //   { label: "All", count: statusSummary.all || 0 },
+      //   { label: "Pending", count: statusSummary.pendingTasks || 0 },
+      //   { label: "In Progress", count: statusSummary.inProgressTasks || 0 },
+      //   { label: "Completed", count: statusSummary.completedTasks || 0 },
+      // ];
+
+      //* CGPT Code --- IGNORE ---
       const statusArray = [
-        { label: "All", count: statusSummary.all || 0 },
-        { label: "Pending", count: statusSummary.pendingTasks || 0 },
-        { label: "In Progress", count: statusSummary.inProgressTasks || 0 },
-        { label: "Completed", count: statusSummary.completedTasks || 0 },
+        { label: "All", value: "All", count: statusSummary.all || 0 },
+        {
+          label: "Pending",
+          value: "pending",
+          count: statusSummary.pendingTasks || 0,
+        },
+        {
+          label: "In Progress",
+          value: "in-progress",
+          count: statusSummary.inProgressTasks || 0,
+        },
+        {
+          label: "Completed",
+          value: "completed",
+          count: statusSummary.completedTasks || 0,
+        },
       ];
+
       setTabs(statusArray);
     } catch (error) {
       console.error("Error fetching users:", error);
@@ -46,8 +69,7 @@ const ManageTasks = () => {
   const handleDownloadReport = async (taskId) => {};
 
   useEffect(() => {
-    getAllTasks(filterStatus);
-    return () => {};
+    getAllTasks();
   }, [filterStatus]);
 
   return (

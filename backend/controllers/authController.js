@@ -67,7 +67,7 @@ const loginUser = async (req, res) => {
         // Check password
         const isMatch = await bcrypt.compare(password, user.password);
 
-        if(!isMatch) {
+        if (!isMatch) {
             return res.status(401).json({ message: "Invalid email or password" });
         }
 
@@ -97,7 +97,7 @@ const getUserProfile = async (req, res) => {
             return res.status(404).json({ message: "User not found" });
         }
         res.json(user);
-        
+
     } catch (error) {
         res.status(500).json({ message: "Server error", error: error.message });
     }
@@ -117,7 +117,7 @@ const updateUserProfile = async (req, res) => {
         user.name = req.body.name || user.name;
         user.email = req.body.email || user.email;
 
-        if(req.body.password) {
+        if (req.body.password) {
             const salt = await bcrypt.genSalt(10);
             user.password = await bcrypt.hash(req.body.password, salt);
         }
@@ -128,14 +128,14 @@ const updateUserProfile = async (req, res) => {
             _id: updatedUser._id,
             name: updatedUser.name,
             email: updatedUser.email,
-            role:updatedUser.role,
+            role: updatedUser.role,
             token: generateToken(updatedUser._id),
         });
-        
+
     } catch (error) {
         res.status(500).json({ message: "Server error", error: error.message });
     }
 };
 
-module.exports = {registerUser, loginUser, getUserProfile,updateUserProfile};
+module.exports = { registerUser, loginUser, getUserProfile, updateUserProfile };
 
