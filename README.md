@@ -11,6 +11,24 @@ My motivation came when i wanted to get my license and the process to get an ins
 so i set out to create something better.
 
 
+## Running the program locally
+To run the webservice locally, you have to create two terminals,
+One would house the backend files and the other would be for the frontend
+
+cd, into the backend and run the program with
+cd backend
+`npm run dev`
+
+**Note** - MongoDb database might not connect as it needs to have access to the database
+since the ip-address youre using is not registered, you wont have access to it.
+
+
+do the same for the frontend
+cd frontend
+cd instructor-booking
+`npm run dev`
+
+
 ## Dependencies
 Frontend: react, tailwind, google fonts, axios, moment, react-hot-toast, react-icons, react-router-dom, recharts 
 Backend: express, jsonwebtoken, mongoose, multer, bcryptjs, cors, dotenv, exceljs 
