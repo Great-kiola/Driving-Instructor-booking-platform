@@ -62,9 +62,9 @@ export const SIDE_MENU_DATA_USER = [
 ]
 
 export const PRIORITY_DATA = [
-    { label: "Low", value: "Low" },
-    { label: "Medium", value: "Medium" },
-    { label: "High", value: "High" },
+    { label: "Low", value: "low" },
+    { label: "Medium", value: "medium" },
+    { label: "High", value: "high" },
 ]
 
 export const STATUS_DATA = [

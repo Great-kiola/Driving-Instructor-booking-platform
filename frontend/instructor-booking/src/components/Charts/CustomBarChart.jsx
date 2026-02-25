@@ -53,7 +53,7 @@ import {
 const CustomBarChart = ({ data }) => {
   const getBarColor = (entry) => {
     switch (entry?.priority) {
-      case "Low":
+      case "low":
         return "#00BC7D";
       case "Medium":
         return "#FE9900";
