@@ -20,7 +20,7 @@ const CreateTasks = () => {
   const [taskData, setTaskData] = useState({
     title: "",
     description: "",
-    priority: "Low",
+    priority: "low",
     dueDate: null,
     assignedTo: [],
     todoChecklist: [],
@@ -54,18 +54,11 @@ const CreateTasks = () => {
     setLoading(true);
 
     try {
-      // const todolist = taskData.todoChecklist?.map((item) => ({
-      //   text: item,
-      //   completed: false,
-      // }));
+      const todolist = taskData.todoChecklist?.map((item) => ({
+        text: item,
+        completed: false,
+      }));
 
-      //* CGPT Code
-      const todolist = Array.isArray(taskData.todoChecklist)
-        ? taskData.todoChecklist.map((item) => ({
-            text: item,
-            completed: false,
-          }))
-        : [];
 
       const response = await axiosInstance.post(API_PATHS.TASKS.CREATE_TASK, {
         ...taskData,
