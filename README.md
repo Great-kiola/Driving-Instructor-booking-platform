@@ -18,7 +18,10 @@ One would house the backend files and the other would be for the frontend
 cd, into the backend and run the program:
 </br>
 -- Instructions
+</br>
+
 cd backend
+</br>
 `npm run dev`
 
 **Note** - MongoDb database might not connect as it needs to have access to the database
@@ -27,7 +30,9 @@ since the ip-address youre using is not registered, you wont have access to it.
 do the same for the frontend
 
 -- Instructions
+</br>
 cd frontend
+</br>
 cd instructor-booking
 `npm run dev`
 
