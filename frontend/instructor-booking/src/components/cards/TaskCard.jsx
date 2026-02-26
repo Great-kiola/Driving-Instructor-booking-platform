@@ -63,9 +63,9 @@ const TaskCard = ({
             <div
                 className={`px-4 border-l-[3px] ${status === "In Progress"
                         ? "border-cyan-500"
-                        : status === "Completed"
-                            ? "border-indigo-500"
-                            : "border-violet-500"
+                        : status === "completed"
+                            ? "border-green-500"
+                            : "border-orange-500"
                     }`}
             >
                 <p className="text-sm font-medium text-gray-800 mt-4 line-clamp-2">{title}</p>
@@ -73,7 +73,7 @@ const TaskCard = ({
                 <p className="text-[13px] text-gray-700/80 font-medium mt-2 mb-2 leading-4.5">
                     Task Done:{" "}
                     <span className="font-semibold text-gray-700">
-                        {completedTodoCount} / {todoChecklist?.length || 0}
+                        {completedTodoCount} / {todoChecklist.length || 0}
                     </span>
                 </p>
 
