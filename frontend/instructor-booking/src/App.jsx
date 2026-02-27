@@ -10,8 +10,10 @@ import PrivateRoute from "./routes/PrivateRoute";
 import UserProvider, { UserContext } from "./context/userContext";
 
 // Auth Imports
-import Login from "./pages/Auth/Login";
+// import Login from "./pages/Auth/Login";
 import SignUp from "./pages/Auth/Signup";
+import Login2 from "./pages/Auth/Login2";
+
 
 // Admin Routes
 import Dashboard from "./pages/Admin/Dashboard";
@@ -34,7 +36,7 @@ const App = () => {
       <div>
         <Router>
           <Routes>
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login2 />} />
             <Route path="/signup" element={<SignUp />} />
 
             {/* Admin Routes */}
