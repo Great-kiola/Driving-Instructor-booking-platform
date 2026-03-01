@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DeleteAlert = ({ content, onDelete, onCancel }) => {
+const DeleteAlert = ({ content, onDelete,  }) => {
   return (
     <div>
         <p className="text-sm">{content}</p>
