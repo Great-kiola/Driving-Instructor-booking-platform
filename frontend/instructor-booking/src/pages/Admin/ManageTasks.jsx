@@ -66,7 +66,9 @@ const ManageTasks = () => {
   };
 
   // Download Task report
-  const handleDownloadReport = async (taskId) => {};
+  const handleDownloadReport = async () => {
+    alert("Button Not implemented");
+  };
 
   useEffect(() => {
     getAllTasks();
