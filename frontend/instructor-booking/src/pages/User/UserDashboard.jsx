@@ -86,7 +86,7 @@ const UserDashboard = () => {
           <InfoCard
             label="Total Tasks"
             value={addThousandSeparator(
-              dashboardData?.charts?.taskDistribution?.all || 0,
+              dashboardData?.charts?.taskDistribution?.All || 0,
             )}
             color="bg-primary"
           />
