@@ -20,13 +20,13 @@ const TaskCard = ({
 }) => {
     const getStatusTagColor = () => {
         switch (status) {
-            case "In Progress":
+            case "in-Progress":
                 return "text-cyan-500 bg-cyan-50 border border-cyan-500/10";
 
-            case "Completed":
+            case "completed":
                 return "text-lime-500 bg-lime-50 border border-lime-500/20";
 
-            case "Pending":
+            case "pending":
                 return "text-violet-500 bg-violet-50 border border-violet-500/20";
         }
     };

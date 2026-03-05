@@ -4,18 +4,18 @@ import moment from 'moment';
 const TaskListTable = ({tableData}) => {
     const getStatusBadgeColor = (status) => {
         switch (status) {
-            case "Completed": return "bg-green-100 text-green-800 border border-green-200";
-            case "InProgress": return "bg-yellow-100 text-yellow-800 border border-yellow-200";
-            case "Pending": return "bg-red-100 text-red-800 border border-red-200";
+            case "completed": return "bg-green-100 text-green-800 border border-green-200";
+            case "in-Progress": return "bg-yellow-100 text-yellow-800 border border-yellow-200";
+            case "pending": return "bg-red-100 text-red-800 border border-red-200";
             default: return "bg-gray-100 text-gray-800 border border-gray-200";
         }
     }
 
     const getPriorityBadgeColor = (priority) => {
         switch (priority) {
-            case "High": return "bg-red-100 text-red-800 border border-red-200";
-            case "Medium": return "bg-orange-100 text-orange-800 border border-orange-200";
-            case "Low": return "bg-green-100 text-green-800 border border-green-200";
+            case "high": return "bg-red-100 text-red-800 border border-red-200";
+            case "medium": return "bg-orange-100 text-orange-800 border border-orange-200";
+            case "low": return "bg-green-100 text-green-800 border border-green-200";
             default: return "bg-gray-100 text-gray-800 border border-gray-200";
         }
     }
