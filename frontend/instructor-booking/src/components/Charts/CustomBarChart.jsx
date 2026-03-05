@@ -97,12 +97,12 @@ const CustomBarChart = ({ data }) => {
           <YAxis tick={{ fontSize: 12, fill: "#555" }} stroke="none" />
           <Tooltip content={CustomTooltip} cursor={{ fill: "transparent" }} />
           <Bar
-            // dataKey="count"
-            // nameKey="priority"
-            // fill="#FF8042"
-            // radius={[10, 10, 0, 0]}
-            // activeDot={{ r: 8, fill: "yellow" }}
-            // activeStyle={{ fill: "green" }}
+            dataKey="count"
+            nameKey="priority"
+            fill="#FF8042"
+            radius={[10, 10, 0, 0]}
+            activeDot={{ r: 8, fill: "yellow" }}
+            activeStyle={{ fill: "green" }}
           >
             {data.map((entry, index) => (
               <Cell key={index} fill={getBarColor(entry)} />
