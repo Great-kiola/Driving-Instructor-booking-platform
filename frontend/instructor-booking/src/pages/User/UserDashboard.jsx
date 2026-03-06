@@ -47,7 +47,13 @@ const UserDashboard = () => {
     setBarChartData(PriorityLevelData);
   };
 
-  const getDashboardData = async () => {
+  const onSeeMore = () => {
+    navigate("/admin/tasks");
+  };
+
+  useEffect(() => {
+    
+    const getDashboardData = async () => {
     try {
       const response = await axiosInstance.get(
         API_PATHS.TASKS.GET_USER_DASHBOARD_DATA,
@@ -60,12 +66,6 @@ const UserDashboard = () => {
       console.error("Error fetching users:", error);
     }
   };
-
-  const onSeeMore = () => {
-    navigate("/admin/tasks");
-  };
-
-  useEffect(() => {
     getDashboardData();
     return () => {};
   }, []);
