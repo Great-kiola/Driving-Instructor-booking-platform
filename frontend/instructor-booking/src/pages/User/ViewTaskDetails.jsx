@@ -5,6 +5,7 @@ import { API_PATHS } from "../../utils/apiPaths";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
 import moment from "moment";
 import AvatarGroup from "../../components/AvatarGroup";
+import { LuSquareArrowOutUpRight } from "react-icons/lu";
 
 const ViewTaskDetails = () => {
   const { id } = useParams();
@@ -90,8 +91,8 @@ const ViewTaskDetails = () => {
                   />
                 </div>
 
-                <div className="">
-                  <label className="">Assigned To</label>
+                <div className="col-span-6 md:col-span-4">
+                  <label className="text-xs font-medium text-slate-500">Assigned To</label>
 
                   <AvatarGroup
                     avatars={
@@ -102,6 +103,38 @@ const ViewTaskDetails = () => {
                   />
                 </div>
               </div>
+
+              <div className="mt-2">
+                <label className="text-xs font-medium text-slate-500">
+                  Todo Checklist
+                </label>
+
+                {task?.todoChecklist.map((item, index) => (
+                  <TodoChcecklist
+                    key={`todo_${index}`}
+                    text={item.text}
+                    isChecked={item?.completed}
+                    onChange={() => updateTodoChecklist(index)}
+                  />
+                ))}
+              </div>
+
+              {task?.attachments?.length > 0 && (
+              <div className="mt-2">
+                <label className="text-xs font-medium text-slate-500">
+                  Attachments
+                </label>
+
+                {task?.attachments.map((link, index) => (
+                  <Attachment
+                    key={`link_${index}`}
+                    link={link}
+                    index={index}
+                    onClick={() => handleLinkClick(link)}
+                    />
+                ))}
+                </div>
+            )}
             </div>
           </div>
         )}
@@ -123,3 +156,17 @@ const InfoBox = ({ label, value }) => {
     </>
   );
 };
+
+
+const TodoChcecklist = ({ text, isChecked, onChange }) => {
+  return <div className="flex items-center gap-3 p-3">
+    <input
+      type="checkbox"
+      checked={isChecked}
+      onChange={onChange}
+      className="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded-sm outline-none cursor-pointer"
+    />
+
+    <p className="text-[13px] text-gray-800 ">{text}</p>
+  </div>
+}
