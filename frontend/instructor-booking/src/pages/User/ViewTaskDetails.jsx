@@ -23,10 +23,35 @@ const ViewTaskDetails = () => {
   };
 
   // Handle todo check
-  const updateTodoChecklist = async (index) => {};
+  const updateTodoChecklist = async (index) => {
+    const todoChecklist = [...task?.todoChecklist];
+    const taskId = id;
+
+    if(todoChecklist && todoChecklist[index]) {
+      todoChecklist[index].completed = !todoChecklist[index].completed;
+
+      try{
+        const response = await axiosInstance.put(
+          API_PATHS.TASKS.UPDATE_TODO_CHECKLIST(taskId),
+          {todoChecklist}
+        );
+        if(response.status === 200){
+          setTask(response.data?.task || task);
+        } else {
+          todoChecklist[index].completed = !todoChecklist[index].completed;
+        }
+      } catch(error){
+        todoChecklist[index].completed = !todoChecklist[index].completed;
+        console.error("Error updating todo checklist: ", error);
+      }
+    }
+  };
 
   // Handle attachment link Click
   const handleLinkClick = (link) => {
+    if(!/^https?:\/\//i.test(link)) {
+      link = "https://" + link;
+    }
     window.open(link, "_blank");
   };
 
@@ -92,7 +117,9 @@ const ViewTaskDetails = () => {
                 </div>
 
                 <div className="col-span-6 md:col-span-4">
-                  <label className="text-xs font-medium text-slate-500">Assigned To</label>
+                  <label className="text-xs font-medium text-slate-500">
+                    Assigned To
+                  </label>
 
                   <AvatarGroup
                     avatars={
@@ -120,21 +147,21 @@ const ViewTaskDetails = () => {
               </div>
 
               {task?.attachments?.length > 0 && (
-              <div className="mt-2">
-                <label className="text-xs font-medium text-slate-500">
-                  Attachments
-                </label>
+                <div className="mt-2">
+                  <label className="text-xs font-medium text-slate-500">
+                    Attachments
+                  </label>
 
-                {task?.attachments.map((link, index) => (
-                  <Attachment
-                    key={`link_${index}`}
-                    link={link}
-                    index={index}
-                    onClick={() => handleLinkClick(link)}
+                  {task?.attachments?.map((link, index) => (
+                    <Attachment
+                      key={`link_${index}`}
+                      link={link}
+                      index={index}
+                      onClick={() => handleLinkClick(link)}
                     />
-                ))}
+                  ))}
                 </div>
-            )}
+              )}
             </div>
           </div>
         )}
@@ -157,16 +184,34 @@ const InfoBox = ({ label, value }) => {
   );
 };
 
-
 const TodoChcecklist = ({ text, isChecked, onChange }) => {
-  return <div className="flex items-center gap-3 p-3">
-    <input
-      type="checkbox"
-      checked={isChecked}
-      onChange={onChange}
-      className="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded-sm outline-none cursor-pointer"
-    />
+  return (
+    <div className="flex items-center gap-3 p-3">
+      <input
+        type="checkbox"
+        checked={isChecked}
+        onChange={onChange}
+        className="w-4 h-4 text-primary bg-gray-100 border-gray-300 rounded-sm outline-none cursor-pointer"
+      />
 
-    <p className="text-[13px] text-gray-800 ">{text}</p>
-  </div>
-}
+      <p className="text-[13px] text-gray-800 ">{text}</p>
+    </div>
+  );
+};
+
+const Attachment = ({ link, index, onClick }) => {
+  return <div
+      className="flex justify-between bg-gray-50 border border-gray-100 px-3 py-2 rounded-md mb-3 mt-2 cursor-pointer"
+      onClick={onClick}
+    >
+      <div className="flex-1 flex items-center gap-3">
+        <span className="text-xs text-gray-400 font-semibold mr-2">
+          {index < 9 ? `0${index + 1}` : index + 1}
+        </span>
+
+        <p className="text-xs text-black">{link}</p>
+      </div>
+
+      <LuSquareArrowOutUpRight className="text-gray-400" />
+    </div>
+};
