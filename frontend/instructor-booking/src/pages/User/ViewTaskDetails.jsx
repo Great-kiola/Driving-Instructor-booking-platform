@@ -4,7 +4,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
 import moment from "moment"
-import AvatarGroup from 
+import AvatarGroup from "../../components/AvatarGroup";
 
 const ViewTaskDetails = () => {
   const { id } = useParams();
