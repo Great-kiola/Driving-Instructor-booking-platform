@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
-import moment from "moment"
+import moment from "moment";
 import AvatarGroup from "../../components/AvatarGroup";
 
 const ViewTaskDetails = () => {
@@ -74,30 +74,34 @@ const ViewTaskDetails = () => {
                 <InfoBox label="Description" value={task?.description} />
               </div>
 
-              <div className="mt-4">
-                <InfoBox label="Priority" value={task?.priority} />
+              <div className="grid grid-cols-12 gap-4 mt-4">
+                <div className="cols-span-6 md:cols-span-4">
+                  <InfoBox label="Priority" value={task?.priority} />
+                </div>
+
+                <div className="cols-span-6 md:col-span-4">
+                  <InfoBox
+                    label="Due Date"
+                    value={
+                      task?.dueDate
+                        ? moment(task?.dueDate).format("Do MMM YYY")
+                        : "N/A"
+                    }
+                  />
+                </div>
+
+                <div className="">
+                  <label className="">Assigned To</label>
+
+                  <AvatarGroup
+                    avatars={
+                      task?.assignedTo?.map((item) => item?.profileImageUrl) ||
+                      []
+                    }
+                    maxVisible={5}
+                  />
+                </div>
               </div>
-
-              <div className="mt-4">
-                <InfoBox label="Due Date" value={task?.dueDate ? moment(task?.dueDate).format("Do MMM YYY")
-                  : "N/A"
-                }
-              />
-              </div>
-
-              <div className="">
-                <label className="">
-                  Assigned To
-                </label>
-
-                <AvatarGroup
-                  avatars={task?.assignedTo?.map((item) => item?.profileImageUrl) || []}
-                  maxVisible={5}
-                />
-              </div>
-
-
-
             </div>
           </div>
         )}
