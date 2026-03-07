@@ -39,7 +39,7 @@ const Modal = ({ children, isOpen, onClose, title }) => {
 
         {/* Modal Body */}
         <div className="p-4 md:p-5 space-y-4 ">
-          {/* {children} */}
+          {children}
         </div>
       </div>
     </div>
