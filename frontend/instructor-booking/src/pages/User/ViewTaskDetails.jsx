@@ -24,7 +24,7 @@ const ViewTaskDetails = () => {
 
   // Handle todo check
   const updateTodoChecklist = async (index) => {
-    const todoChecklist = [...task?.todoChecklist];
+    const todoChecklist = [...(task?.todoChecklist ?? [])];
     const taskId = id;
 
     if(todoChecklist && todoChecklist[index]) {
