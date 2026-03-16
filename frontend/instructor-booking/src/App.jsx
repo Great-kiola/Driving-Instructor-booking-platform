@@ -25,6 +25,7 @@ import ManageUsers from "./pages/Admin/ManageUsers";
 import UserDashboard from "./pages/User/UserDashboard";
 import MyTasks from "./pages/User/MyTasks";
 import ViewTaskDetaiils from "./pages/User/ViewTaskDetails";
+import SearchInstructors from "./pages/User/SearchInstructors";
 import { useContext } from "react";
 
 
@@ -54,6 +55,10 @@ const App = () => {
               <Route
                 path="/user/task-details/:id"
                 element={<ViewTaskDetaiils />}
+              />
+              <Route
+                path="/user/search-instructors"
+                element={<SearchInstructors />}
               />
             </Route>
 

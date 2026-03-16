@@ -4,6 +4,7 @@ import {
     LuClipboardCheck,
     LuSquarePlus,
     LuLogOut,
+    LuSearch,
 } from "react-icons/lu";
 
 
@@ -41,6 +42,12 @@ export const SIDE_MENU_DATA = [
 ];
 
 export const SIDE_MENU_DATA_USER = [
+    {
+        id: "06",
+        label: "Search Instructors",
+        icon: LuSearch,
+        path: "/user/search-instructors",
+    },
     {
         id: "01",
         label: "Dashboard",
