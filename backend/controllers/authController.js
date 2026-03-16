@@ -20,10 +20,29 @@ const registerUser = async (req, res) => {
             return res.status(400).json({ message: "User already exists" });
         }
 
-        // Determine role based on invite token
-        let role = "student";
-        if (inviteToken && inviteToken === process.env.INSTRUCTOR_INVITE_TOKEN) { role = "instructor"; }
+        // "----------------------------------------------------------------"
 
+        // Determine role based on invite token
+        // let role = "student";
+        // if (inviteToken && inviteToken === process.env.INSTRUCTOR_INVITE_TOKEN) { role = "instructor"; }
+
+        let role = "student";
+        const token = inviteToken?.trim();
+
+        // If token provided but incorrect → stop signup
+        if (token && token !== process.env.INSTRUCTOR_INVITE_TOKEN) {
+            return res.status(400).json({
+                message: "Invalid instructor invite token"
+            });
+        }
+
+        // If token is correct → instructor
+        if (token === process.env.INSTRUCTOR_INVITE_TOKEN) {
+            role = "instructor";
+        }
+        // "----------------------------------------------------------------"
+        
+        
         // Hash password
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);

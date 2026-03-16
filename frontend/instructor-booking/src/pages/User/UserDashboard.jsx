@@ -75,7 +75,7 @@ const UserDashboard = () => {
       <div className="card my-5">
         <div>
           <div className="col-span-3">
-            <h2 className="text-xl md:text-xl">Welcome Back, <span className="text-primary text-lg">{user?.name}</span></h2>
+            <h2 className="text-xl md:text-xl">Welcome Back, <span className="text-primary">{user?.name}</span></h2>
             <p className="text-xs md:text-[13px] text-gray-400 mt-1.5">
               {moment().format("dddd Do MMMM YYYY")}
             </p>

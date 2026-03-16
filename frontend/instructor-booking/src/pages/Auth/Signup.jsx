@@ -10,6 +10,9 @@ import { useContext } from "react";
 import { UserContext } from "../../context/userContext";
 import uploadImage from "../../utils/uploadImage";
 
+// DiceBear Avatar API for placeholder profile images
+import { generateAvatar } from "../../utils/generateAvatar";
+
 const Signup = () => {
   const [profilePic, setProfilePic] = useState(null);
   const [fullName, setFullName] = useState("");
@@ -22,11 +25,10 @@ const Signup = () => {
   const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
 
+
   // Handle signup  form submit
   const handleSignUp = async (e) => {
     e.preventDefault();
-
-    let profileImageUrl = "";
 
     if (!fullName) {
       setError("Please enter fullname");
@@ -48,9 +50,14 @@ const Signup = () => {
     try {
       // Upload profile picture if selected
 
+      let profileImageUrl;
+
       if (profilePic) {
         const imgUploadRes = await uploadImage(profilePic);
-        profileImageUrl = imgUploadRes.imageUrl || "";
+        profileImageUrl = imgUploadRes.imageUrl;
+      } else {
+        const role = adminInviteToken ? "instructor" : "student";
+        profileImageUrl = generateAvatar(email, role);
       }
 
       const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
@@ -58,7 +65,7 @@ const Signup = () => {
         email,
         password,
         profileImageUrl,
-        adminInviteToken,
+        inviteToken: adminInviteToken,
       });
 
       const { token, role } = response.data;

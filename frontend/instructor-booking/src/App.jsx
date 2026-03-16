@@ -12,7 +12,6 @@ import UserProvider, { UserContext } from "./context/userContext";
 // Auth Imports
 import Login from "./pages/Auth/Login"; 
 import SignUp from "./pages/Auth/Signup";
-import Login2 from "./pages/Auth/Login2";
 
 
 // Admin Routes
