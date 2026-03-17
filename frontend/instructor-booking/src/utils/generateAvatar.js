@@ -3,5 +3,5 @@ export const generateAvatar = (seed, role) => {
 
   const style = role === "instructor" ? "initials" : "thumbs";
 
-  return `${baseUrl}/${style}/svg?seed=${encodeURIComponent(seed)}&size=64&radius=50`;
+  return `${baseUrl}/${style}/svg?seed=${encodeURIComponent(seed)}&size=48&radius=50`;
 };
