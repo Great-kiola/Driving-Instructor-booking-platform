@@ -10,17 +10,6 @@ const SelectUsers = ({ selectedUsers, setSelectedUsers }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [tempSelectedUsers, setTempSelectedUsers] = useState([]);
 
-  const getAllUsers = async () => {
-    try {
-      const response = await axiosInstance.get(API_PATHS.USERS.GET_ALL_USERS);
-      if (response.data?.length > 0) {
-        setAllUsers(response.data);
-      }
-    } catch (error) {
-      console.error("Error fetching users:", error);
-    }
-  };
-
   const toggleUserSelection = (userId) => {
     setTempSelectedUsers((prev) =>
       prev.includes(userId)
@@ -39,6 +28,17 @@ const SelectUsers = ({ selectedUsers, setSelectedUsers }) => {
     .map((user) => user.profileImageUrl);
 
   useEffect(() => {
+    const getAllUsers = async () => {
+      try {
+        const response = await axiosInstance.get(API_PATHS.USERS.GET_ALL_USERS);
+        if (response.data?.length > 0) {
+          setAllUsers(response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    };
+
     getAllUsers();
   }, []);
 
@@ -60,13 +60,13 @@ const SelectUsers = ({ selectedUsers, setSelectedUsers }) => {
 
       {selectedUsersAvatars.length > 0 && (
         <div className="cursor-pointer" onClick={() => setIsModalOpen(true)}>
-          <AvatarGroup avatars={selectedUsersAvatars} maxVisible={3}/>
+          <AvatarGroup avatars={selectedUsersAvatars} maxVisible={3} />
         </div>
       )}
 
       <Modal
         isOpen={isModalOpen}
-        onClose={()=> setIsModalOpen(false)}
+        onClose={() => setIsModalOpen(false)}
         title="Select Users"
       >
         <div className="space-y-4 h-60[vh] overflow-y-auto">
