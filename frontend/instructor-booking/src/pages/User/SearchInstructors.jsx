@@ -6,12 +6,12 @@ const SearchInstructors = () => {
   return (
     <DashboardLayout activeMenu="Search Instructors">
       <div className="card2 my-5 ">
-        <h2 className="text-3xl text-center font-bold"> Find Instructors Near you</h2>
+        <h2 className="text-3xl text-center"> Enter your location</h2>
 
-        <div className="search-bar bg-amber-300 p-5 rounded-xl w-full">
+        <div className="search-bar bg-[#edf0f2] p-5 rounded-xl w-full mt-8">
           <input
             type="text"
-            placeholder="Search Here"
+            placeholder="Enter your location"
             className="border-2 w-full p-5" 
           >
 
