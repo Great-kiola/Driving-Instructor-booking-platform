@@ -1,20 +1,23 @@
 import React from "react";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
-import { LuSearch } from "react-icons/lu";
+import { LuSearch, LuTimer } from "react-icons/lu";
 
 const SearchInstructors = () => {
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     alert("Button Clicked!");
   };
+
   return (
     <DashboardLayout activeMenu="Search Instructors">
+      {/* First layer */}
       <div className="card2 my-5 ">
         <h2 className="text-3xl text-center"> Enter your location </h2>
 
-        <div className="search-bar bg-[#edf0f2] rounded-full w-full mt-8">
+        <div className="search-bar bg-[#edf0f2] rounded-full w-20px mt-8">
           <form
             onSubmit={handleClick}
-            className="flex justify-between items-center"
+            className="flex justify-between items-center relative"
           >
             <input
               type="text"
@@ -22,13 +25,46 @@ const SearchInstructors = () => {
               className="w-full p-5 focus:outline-none ml-5 text-lg"
             ></input>
 
-            <button className="w-55 flex items-center justify-center bg-primary p-5 rounded-full m-2 text-white hover:bg-blue-700">
-              <LuSearch className="text-xl mr-2"/>
+            <button className="w-30 absolute right-2 flex items-center justify-center bg-primary p-3 rounded-full m-2 text-white hover:bg-blue-700  transition delay-150 duration-300 ease-in-out hover:scale-110">
+              <LuSearch className="text-xl mr-2" />
               Search
             </button>
           </form>
+        </div>
+      </div>
 
+      {/* Second Layer */}
 
+      <div className="bg-red-500 my-5 rounded-2xl flex">
+        <div>
+          <img
+            src="https://www.fakepersongenerator.com/face/male/male1085547337250.jpg"
+            alt="first Instructor"
+            className="rounded-l-2xl"
+          />
+        </div>
+
+        <div className="w-full">
+          <div className="w-full border-b-10 pb-10 text-white p-5 flex items-center">
+            <div>
+              <h1 className="font-bold">James Baldwin</h1>
+              <p>
+                About Me: I am an experienced instructor with over 200 years
+                experience teaching students how to drive I have a record of 200
+                passes under my belt.
+              </p>
+            </div>
+            <div>
+              <LuTimer />
+              <p>Work Hours</p>
+            </div>
+          </div>
+
+          <div>
+            <h2>
+              £599 <span>/hr</span>
+            </h2>
+          </div>
         </div>
       </div>
     </DashboardLayout>
