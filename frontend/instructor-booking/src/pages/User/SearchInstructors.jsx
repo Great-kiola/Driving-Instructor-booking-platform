@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
 import { LuSearch, LuTimer, LuLocate } from "react-icons/lu";
-import axios from "axios";
+
+// import axios from "axios";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 
