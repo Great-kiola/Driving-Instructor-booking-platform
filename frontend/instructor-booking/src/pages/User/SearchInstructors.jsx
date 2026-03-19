@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
 import { LuSearch, LuTimer, LuLocate } from "react-icons/lu";
+import axios from "axios";
 
 const SearchInstructors = () => {
-  const handleClick = (e) => {
+  const [location, setLocation] = useState("");
+  const [results, setResults] = useState([]);
+
+  const handleClick = async (e) => {
     e.preventDefault();
-    alert("Button Clicked!");
+
+    try {
+      const res = await axios.get(
+        `http://localhost:8000/api/users/search?location=${location}`,
+      );
+
+      // console.log(res.data);
+      setResults(res.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -14,7 +28,7 @@ const SearchInstructors = () => {
       <div className="card2 my-5">
         <h2 className="text-3xl text-center"> Enter your location </h2>
 
-        <div className="search-bar bg-[#edf0f2] rounded-full w-20px mt-8">
+        <div className="search-bar bg-[#edf0f2] rounded-full mt-8">
           <form
             onSubmit={handleClick}
             className="flex justify-between items-center relative"
@@ -22,8 +36,10 @@ const SearchInstructors = () => {
             <input
               type="text"
               placeholder="Enter your location"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
               className="w-full p-5 focus:outline-none ml-5 text-lg"
-            ></input>
+            />
 
             <button className="w-30 absolute right-2 flex items-center justify-center bg-primary p-3 rounded-full m-2 text-white hover:bg-blue-700  transition delay-150 duration-300 ease-in-out hover:scale-110">
               <LuSearch className="text-xl mr-2" />
@@ -35,47 +51,42 @@ const SearchInstructors = () => {
 
       {/* Second Layer */}
 
-      <div className="shadow-md rounded-2xl flex border">
-        <div>
+      {results.map((instructor) => (
+        <div
+          key={instructor._id}
+          className="shadow-md rounded-2xl flex border my-4"
+        >
           <img
-            src="https://www.fakepersongenerator.com/face/male/male1085547337250.jpg"
-            alt="first Instructor"
-            className="rounded-l-2xl"
+            src={instructor.profileImageUrl}
+            alt="Instructor"
+            className="rounded-l-2xl w-40"
           />
-        </div>
 
-        <div className="w-full">
-          <div className="w-full border-b flex items-center">
-            <div className="mr-10">
-              <h1 className="font-bold">James Baldwin</h1>
-              <p>
-                About Me: I am an experienced instructor with over 200 years
-                experience teaching students how to drive I have a record of 200
-                passes under my belt.
-              </p>
-            </div>
+          <div className="w-full p-4">
+            <h1 className="font-bold text-lg">{instructor.name}</h1>
 
-            <div className="w-50 border-l-2 bg-red-300">
+            <p className="text-gray-600">
+              {instructor.about || "No description available"}
+            </p>
+
+            <div className="mt-3 flex justify-between">
+              <div>
+                <LuLocate />
+                <p>{instructor.location}</p>
+              </div>
+
               <div>
                 <LuTimer />
-                <p>Work Hours</p>
-                <h2>03:00pm - 10:00am</h2>
+                <p>{instructor.experience} years</p>
               </div>
-                <LuLocate />
-                <p>Experience</p>
-                <h2>3 years</h2>
-              <div></div>
             </div>
-          </div>
 
-          <div className="p-5">
-            <h2 className="text-xl font-medium">
-              {" "}
-              £59.99<span className="text-gray-300">/hr</span>
+            <h2 className="text-xl font-medium mt-2">
+              £{instructor.price || 0}/hr
             </h2>
           </div>
         </div>
-      </div>
+      ))}
     </DashboardLayout>
   );
 };

@@ -11,8 +11,8 @@ import UserProvider, { UserContext } from "./context/userContext";
 
 // Auth Imports
 import Login from "./pages/Auth/Login"; 
-import SignUp from "./pages/Auth/Signup";
-
+import Signup from "./pages/Auth/Signup"
+// import Signup2 from "./pages/Auth/Signup2";
 
 // Admin Routes
 import Dashboard from "./pages/Admin/Dashboard";
@@ -37,7 +37,7 @@ const App = () => {
         <Router>
           <Routes>
             <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
+            <Route path="/Signup" element={<Signup />} />
 
             {/* Admin Routes */}
             <Route element={<PrivateRoute allowedRoles={["instructor"]} />}>
