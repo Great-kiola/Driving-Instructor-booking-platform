@@ -12,7 +12,7 @@ const generateToken = (userId) => {
 // @access Public
 const registerUser = async (req, res) => {
     try {
-        const { name, email, password, profileImageUrl, inviteToken } = req.body;
+        const { name, email, password, profileImageUrl, inviteToken, location } = req.body;
 
         // Check if user already exists
         const userExists = await User.findOne({ email });
@@ -54,6 +54,7 @@ const registerUser = async (req, res) => {
             password: hashedPassword,
             role,
             profileImageUrl,
+            location
         });
 
         // respond with user data and token
@@ -63,6 +64,7 @@ const registerUser = async (req, res) => {
             email: user.email,
             role: user.role,
             profileImageUrl: user.profileImageUrl,
+            location: user.location,
             token: generateToken(user._id)
         });
 

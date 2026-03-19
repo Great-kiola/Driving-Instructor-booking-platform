@@ -18,6 +18,7 @@ const Signup = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [location, setLocation] = useState("");
   const [adminInviteToken, setAdminInviteToken] = useState("");
 
   const [error, setError] = useState(null);
@@ -66,6 +67,7 @@ const Signup = () => {
         password,
         profileImageUrl,
         inviteToken: adminInviteToken,
+        location: location,
       });
 
       const { token, role } = response.data;
@@ -124,6 +126,14 @@ const Signup = () => {
               label="Password"
               placeholder="min 8 characters"
               type="password"
+            />
+
+            <Input
+              value={location}
+              onChange={({ target }) => setLocation(target.value)}
+              label="Location"
+              placeholder="Enter your location"
+              type="text"
             />
 
             <Input

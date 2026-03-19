@@ -3,6 +3,7 @@ import DashboardLayout from "../../components/layouts/DashboardLayout";
 import { LuSearch, LuTimer, LuLocate } from "react-icons/lu";
 
 // import axios from "axios";
+
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 
@@ -14,8 +15,10 @@ const SearchInstructors = () => {
     e.preventDefault();
 
     try {
-      const res = await axiosInstance.get(API_PATHS.USERS.SEARCH_USERS(location), {});
+      const res = await axiosInstance.get(API_PATHS.USERS.SEARCH_USERS(location), {
+      });
 
+      console.log(res.data);
       setResults(res.data);
     } catch (error) {
       console.error(error);
