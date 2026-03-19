@@ -6,25 +6,18 @@ const { getUsers, getUserById } = require("../controllers/userController");
 
 // 🔍 Search instructors
 router.get("/search", async (req, res) => {
-    try {
-        const { location } = req.query;
+  try {
+    const { location } = req.query;
 
-        const instructors = await User.find({
-            role: "instructor",
-            $or: [
-                { "location.city": { $regex: location, $options: "i" } },
-                { "location.postcode": { $regex: location, $options: "i" } },
-            ],
-        });
+    const instructors = await User.find({
+      role: "instructor",
+      location: { $regex: location, $options: "i" },
+    });
 
-        res.json(instructors);
-        
-        if (!location) {
-            return res.status(400).json({ message: "Location required" });
-        }
-    } catch (error) {
-        res.status(500).json({ message: "Server error" });
-    }
+    res.json(instructors);
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
 });
 
 // 👤 Admin routes
