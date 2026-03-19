@@ -1,6 +1,6 @@
 import React from "react";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
-import { LuSearch, LuTimer } from "react-icons/lu";
+import { LuSearch, LuTimer, LuLocate } from "react-icons/lu";
 
 const SearchInstructors = () => {
   const handleClick = (e) => {
@@ -35,7 +35,7 @@ const SearchInstructors = () => {
 
       {/* Second Layer */}
 
-      <div className="bg-red-500 my-5 rounded-2xl flex">
+      <div className="shadow-md my-5 rounded-2xl flex border">
         <div>
           <img
             src="https://www.fakepersongenerator.com/face/male/male1085547337250.jpg"
@@ -45,8 +45,8 @@ const SearchInstructors = () => {
         </div>
 
         <div className="w-full">
-          <div className="w-full border-b-10 pb-10 text-white p-5 flex items-center">
-            <div>
+          <div className="w-full border-b flex items-center">
+            <div className="mr-10">
               <h1 className="font-bold">James Baldwin</h1>
               <p>
                 About Me: I am an experienced instructor with over 200 years
@@ -54,15 +54,24 @@ const SearchInstructors = () => {
                 passes under my belt.
               </p>
             </div>
-            <div>
-              <LuTimer />
-              <p>Work Hours</p>
+
+            <div className="w-50 border-l-2 bg-red-300">
+              <div>
+                <LuTimer />
+                <p>Work Hours</p>
+                <h2>03:00pm - 10:00am</h2>
+              </div>
+                <LuLocate />
+                <p>Experience</p>
+                <h2>3 years</h2>
+              <div></div>
             </div>
           </div>
 
-          <div>
-            <h2>
-              £599 <span>/hr</span>
+          <div className="p-5">
+            <h2 className="text-xl font-medium">
+              {" "}
+              £59.99<span className="text-gray-300">/hr</span>
             </h2>
           </div>
         </div>
