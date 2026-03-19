@@ -13,10 +13,7 @@ const SearchInstructors = () => {
     e.preventDefault();
 
     try {
-      const res = await axiosInstance.get(API_PATHS.USERS.SEARCH_USERS, {
-        
-        console.log(res.data);
-      });
+      const res = await axiosInstance.get(API_PATHS.USERS.SEARCH_USERS(location), {});
 
       setResults(res.data);
     } catch (error) {
