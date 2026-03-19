@@ -26,7 +26,6 @@ const Signup = () => {
   const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-
   // Handle signup  form submit
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -42,6 +41,11 @@ const Signup = () => {
 
     if (!password) {
       setError("Please enter the password");
+      return;
+    }
+
+    if (!location.trim()) {
+      setError("Please enter your location");
       return;
     }
 
@@ -67,7 +71,7 @@ const Signup = () => {
         password,
         profileImageUrl,
         inviteToken: adminInviteToken,
-        location: location,
+        location,
       });
 
       const { token, role } = response.data;
