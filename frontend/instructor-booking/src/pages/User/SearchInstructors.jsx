@@ -15,7 +15,7 @@ const SearchInstructors = () => {
         `http://localhost:8000/api/users/search?location=${location}`,
       );
 
-      // console.log(res.data);
+      console.log(res.data);
       setResults(res.data);
     } catch (error) {
       console.error(error);
