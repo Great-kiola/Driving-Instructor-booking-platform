@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
 import { LuSearch, LuTimer, LuLocate } from "react-icons/lu";
 import axios from "axios";
+import axiosInstance from "../../utils/axiosInstance";
+import { API_PATHS } from "../../utils/apiPaths";
 
 const SearchInstructors = () => {
   const [location, setLocation] = useState("");
@@ -11,11 +13,11 @@ const SearchInstructors = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.get(
-        `http://localhost:8000/api/users/search?location=${location}`,
-      );
+      const res = await axiosInstance.get(API_PATHS.USERS.SEARCH_USERS, {
+        
+        console.log(res.data);
+      });
 
-      console.log(res.data);
       setResults(res.data);
     } catch (error) {
       console.error(error);
