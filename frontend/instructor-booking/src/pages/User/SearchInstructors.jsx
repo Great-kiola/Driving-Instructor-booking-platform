@@ -11,7 +11,7 @@ const SearchInstructors = () => {
   return (
     <DashboardLayout activeMenu="Search Instructors">
       {/* First layer */}
-      <div className="card2 my-5 ">
+      <div className="card2 my-5">
         <h2 className="text-3xl text-center"> Enter your location </h2>
 
         <div className="search-bar bg-[#edf0f2] rounded-full w-20px mt-8">
@@ -35,7 +35,7 @@ const SearchInstructors = () => {
 
       {/* Second Layer */}
 
-      <div className="shadow-md my-5 rounded-2xl flex border">
+      <div className="shadow-md rounded-2xl flex border">
         <div>
           <img
             src="https://www.fakepersongenerator.com/face/male/male1085547337250.jpg"
