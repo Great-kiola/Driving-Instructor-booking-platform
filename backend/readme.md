@@ -26,3 +26,9 @@ const deleteUser = async (req, res) => {
 //         res.status(500).json({ message: "Server error", error: error.message });
 //     }
 // }
+
+
+
+// Delete the lock file
+<!-- This must be ran in the root folder -->
+rm -f .git/index.lock
