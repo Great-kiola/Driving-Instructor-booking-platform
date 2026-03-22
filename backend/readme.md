@@ -32,3 +32,9 @@ const deleteUser = async (req, res) => {
 // Delete the lock file
 <!-- This must be ran in the root folder -->
 rm -f .git/index.lock
+
+
+// Fo the backend
+cd backend           
+rm -rf node_modules
+rm package-lock.json
