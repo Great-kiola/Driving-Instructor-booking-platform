@@ -87,6 +87,11 @@ const SearchInstructors = () => {
             <h2 className="text-xl font-medium mt-2">
               £{instructor.price || 0}/hr
             </h2>
+
+            <button className=" cursor-pointer bg-primary p-3 rounded-full m-2 text-white hover:bg-blue-700  transition delay-150 duration-300 ease-in-out hover:scale-110">
+              <LuSearch className="text-xl mr-2" />
+              Book Instructor
+            </button>
           </div>
         </div>
       ))}
