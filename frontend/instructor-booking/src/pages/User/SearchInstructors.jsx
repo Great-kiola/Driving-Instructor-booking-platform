@@ -53,8 +53,8 @@ const SearchInstructors = () => {
       </div>
 
       {/* Second Layer */}
-
-      {results.map((instructor) => (
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-5">
+        {results.map((instructor) => (
         <div
           key={instructor._id}
           className="shadow-md rounded-2xl flex border my-4"
@@ -95,6 +95,8 @@ const SearchInstructors = () => {
           </div>
         </div>
       ))}
+      </div>
+      
     </DashboardLayout>
   );
 };
