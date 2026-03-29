@@ -25,6 +25,13 @@ const SearchInstructors = () => {
     }
   };
 
+  const handleBook = (instructorId) => {
+    // Implementation for booking an instructor
+    console.log("Booking instructor with ID:", instructorId);
+    alert(`Booking instructor with ID: ${instructorId}`);
+  };
+
+
   return (
     <DashboardLayout activeMenu="Search Instructors">
       {/* First layer */}
@@ -53,7 +60,7 @@ const SearchInstructors = () => {
       </div>
 
       {/* Second Layer */}
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-5">
+      <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 my-5">
         {results.map((instructor) => (
         <div
           key={instructor._id}
@@ -88,7 +95,7 @@ const SearchInstructors = () => {
               £{instructor.price || 0}/hr
             </h2>
 
-            <button className=" cursor-pointer bg-primary p-3 rounded-full m-2 text-white hover:bg-blue-700  transition delay-150 duration-300 ease-in-out hover:scale-110">
+            <button className="add-btn" onClick={() => handleBook(instructor._id)}>
               <LuSearch className="text-xl mr-2" />
               Book Instructor
             </button>
