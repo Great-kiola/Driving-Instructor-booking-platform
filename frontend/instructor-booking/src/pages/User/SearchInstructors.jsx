@@ -66,7 +66,7 @@ const SearchInstructors = () => {
         {results.map((instructor) => (
         <div
           key={instructor._id}
-          className="shadow-md rounded-2xl flex border my-4"
+          className="card shadow-md rounded-2xl flex border my-4"
         >
           <img
             src={instructor.profileImageUrl}

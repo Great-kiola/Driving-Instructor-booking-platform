@@ -47,25 +47,25 @@ const Dashboard = () => {
     setBarChartData(PriorityLevelData);
   };
 
-  const getDashboardData = async () => {
-    try {
-      const response = await axiosInstance.get(
-        API_PATHS.TASKS.GET_DASHBOARD_DATA,
-      );
-      if (response.data) {
-        setDashboardData(response.data);
-        prepareChartData(response.data?.charts || null);
-      }
-    } catch (error) {
-      console.error("Error fetching users:", error);
-    }
-  };
-
   const onSeeMore = () => {
     navigate("/admin/tasks");
   };
 
   useEffect(() => {
+    const getDashboardData = async () => {
+      try {
+        const response = await axiosInstance.get(
+          API_PATHS.TASKS.GET_DASHBOARD_DATA,
+        );
+        if (response.data) {
+          setDashboardData(response.data);
+          prepareChartData(response.data?.charts || null);
+        }
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    };
+
     getDashboardData();
     return () => {};
   }, []);
@@ -75,7 +75,9 @@ const Dashboard = () => {
       <div className="card my-5">
         <div>
           <div className="col-span-3">
-            <h2 className="text-xl md:text-2xl">Welcome Back, <span className="text-primary">{user?.name}</span></h2>
+            <h2 className="text-xl md:text-2xl">
+              Welcome Back, <span className="text-primary">{user?.name}</span>
+            </h2>
             <p className="text-xs md:text-[13px] text-gray-400 mt-1.5">
               {moment().format("dddd Do MMMM YYYY")}
             </p>
@@ -118,7 +120,6 @@ const Dashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-4 md:my-6">
-
         {/* Pie chart */}
         <div>
           <div className="card">
