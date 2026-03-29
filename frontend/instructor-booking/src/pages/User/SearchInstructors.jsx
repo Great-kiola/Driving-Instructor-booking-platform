@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
-import { LuSearch, LuTimer, LuLocate } from "react-icons/lu";
+import { LuSearch, LuTimer } from "react-icons/lu";
+import { FaLocationDot } from "react-icons/fa6";
+
 
 // import axios from "axios";
 
@@ -69,7 +71,7 @@ const SearchInstructors = () => {
           <img
             src={instructor.profileImageUrl}
             alt="Instructor"
-            className="rounded-l-2xl w-40"
+            className="rounded-l-2xl w-40 ml-5"
           />
 
           <div className="w-full p-4">
@@ -79,13 +81,13 @@ const SearchInstructors = () => {
               {instructor.about || "No description available"}
             </p>
 
-            <div className="mt-3 flex justify-between">
-              <div>
-                <LuLocate /> 
+            <div className="flex items-center gap-4 mt-2">
+              <div className="flex items-center">
+                <FaLocationDot /> 
                 <p>{instructor.location}</p>
               </div>
 
-              <div>
+              <div className="flex items-center justify-center gap-1">
                 <LuTimer />
                 <p>{instructor.experience} years</p>
               </div>
@@ -95,7 +97,7 @@ const SearchInstructors = () => {
               £{instructor.price || 0}/hr
             </h2>
 
-            <button className="add-btn" onClick={() => handleBook(instructor._id)}>
+            <button className="book-btn" onClick={() => handleBook(instructor._id)}>
               <LuSearch className="text-xl mr-2" />
               Book Instructor
             </button>
