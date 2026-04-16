@@ -24,7 +24,7 @@ const SearchInstructors = () => {
       console.log(location);
       console.log(res.data);
 
-      // setResults(res.data);
+      setResults(res.data);
     } catch (error) {
       console.error(error);
     }
@@ -65,7 +65,7 @@ const SearchInstructors = () => {
       </div>
 
       {/* Second Layer */}
-      <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 my-5">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 my-5">
         {results.map((instructor) => (
         <div
           key={instructor._id}
