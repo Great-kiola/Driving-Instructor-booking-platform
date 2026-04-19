@@ -20,10 +20,6 @@ const SearchInstructors = () => {
       
       const res = await axiosInstance.get(API_PATHS.USERS.SEARCH_USERS(location), {
       });
-
-      console.log(location);
-      console.log(res.data);
-
       setResults(res.data);
     } catch (error) {
       console.error(error);
