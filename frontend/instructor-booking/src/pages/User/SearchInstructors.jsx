@@ -71,7 +71,7 @@ const SearchInstructors = () => {
       </div>
 
       {/* Second Layer */}
-      <div className="grid grid-cols-3 gap-4 my-5">
+      <div className="grid grid-cols-2 gap-4 my-5">
         {/* ✅ Case 1: Results exist */}
         {Array.isArray(results) &&
           results.length > 0 &&
