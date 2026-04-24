@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
-import { LuSearch, LuTimer } from "react-icons/lu";
-import { FaLocationDot } from "react-icons/fa6";
-
-// import axios from "axios";
-
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 
-import { useEffect } from "react";
+import { LuSearch, LuTimer } from "react-icons/lu";
+import { FaLocationDot } from "react-icons/fa6";
 
 const SearchInstructors = () => {
   const [search, setSearch] = useState("");
