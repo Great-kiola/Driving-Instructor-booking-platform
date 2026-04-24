@@ -15,30 +15,28 @@ const SearchInstructors = () => {
   const [results, setResults] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
 
-const updateSearch = async (e) => {
-  const value = e.target.value;
-  setSearch(value);
-  setHasSearched(true); // ✅ THIS FIXES YOUR ISSUE
+  const updateSearch = (e) => {
+    setSearch(e.target.value);
+  };
 
-  if (!value.trim()) {
-    setResults([]);
-    setHasSearched(false); // optional: reset when empty
-    return;
-  }
+  const getResults = async (e) => {
+    e.preventDefault();
+    setHasSearched(true);
 
-  try {
-    const res = await axiosInstance.get(
-      API_PATHS.USERS.SEARCH_USERS(value)
-    );
+    if (!search.trim()) {
+      setResults([]);
+      return;
+    }
 
-    // 🔥 IMPORTANT: ensure it's always an array
-    setResults(Array.isArray(res.data) ? res.data : []);
-  } catch (err) {
-    console.error(err);
-    setResults([]);
-  }
-};
+    try {
+      const res = await axiosInstance.get(API_PATHS.USERS.SEARCH_USERS(search));
 
+      setResults(Array.isArray(res.data) ? res.data : []);
+    } catch (error) {
+      console.error(error);
+      setResults([]);
+    }
+  };
 
   const handleBook = (instructorId) => {
     // Implementation for booking an instructor
@@ -53,12 +51,24 @@ const updateSearch = async (e) => {
         <h2 className="text-3xl text-center"> Enter your Location </h2>
 
         <div className="search-bar bg-[#edf0f2] rounded-full mt-8">
-          <input
-            type="text"
-            placeholder="Enter your Location"
-            onChange={updateSearch}
-            className="w-full p-5 focus:outline-none ml-5 text-lg"
-          />
+          <form onSubmit={getResults}>
+            <div className="search-bar bg-[#edf0f2] rounded-full mt-8 flex items-center">
+              <input
+                type="text"
+                placeholder="Enter your Location"
+                value={search}
+                onChange={updateSearch}
+                className="w-full p-5 focus:outline-none ml-5 text-lg bg-transparent"
+              />
+
+              <button
+                type="submit"
+                className="bg-blue-500 text-white px-6 py-3 rounded-full mr-2 hover:bg-blue-600"
+              >
+                <LuSearch />
+              </button>
+            </div>
+          </form>
         </div>
       </div>
 
