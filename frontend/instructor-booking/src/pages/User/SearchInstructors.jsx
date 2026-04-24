@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
 import { LuSearch, LuTimer } from "react-icons/lu";
 import { FaLocationDot } from "react-icons/fa6";
-import { data } from "../../../src/data";
 
 // import axios from "axios";
 
@@ -14,6 +13,7 @@ import { useEffect } from "react";
 const SearchInstructors = () => {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
+  const [hasSearched, setHasSearched] = useState(false);
 
   const updateSearch = async (e) => {
     const value = e.target.value;
@@ -29,6 +29,20 @@ const SearchInstructors = () => {
       setResults(res.data);
     } catch (err) {
       console.error(err);
+    }
+  };
+
+  const getResults = async (e) => {
+    e.preventDefault();
+    setHasSearched(true);
+
+    try {
+      const res = await axiosInstance.get(API_PATHS.USERS.SEARCH_USERS(search));
+
+      setResults(res.data);
+    } catch (error) {
+      console.error(error);
+      setResults([]); // fallback
     }
   };
 
@@ -68,48 +82,35 @@ const SearchInstructors = () => {
       </div>
 
       {/* Second Layer */}
-      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 my-5">
-        {results.map((instructor) => (
-        <div
-          key={instructor._id}
-          className="card shadow-md rounded-2xl flex border my-4"
-        >
-          <img
-            src={instructor.profileImageUrl}
-            alt="Instructor"
-            className="rounded-l-2xl w-40 ml-5"
-          />
-
-          <div className="w-full p-4">
-            <h1 className="font-bold text-lg">{instructor.name}</h1>
-
-            <p className="text-gray-600">
-              {instructor.about || "No description available"}
-            </p>
-
-            <div className="flex items-center gap-4 mt-2">
-              <div className="flex items-center">
-                <FaLocationDot /> 
-                <p>{instructor.location}</p>
-              </div>
-
-              <div className="flex items-center justify-center gap-1">
-                <LuTimer />
-                <p>{instructor.experience} years</p>
+      <div className="grid grid-cols-2 gap-4 my-5">
+        {/* ✅ Case 1: Results exist */}
+        {Array.isArray(results) &&
+          results.length > 0 &&
+          results.map((instructor) => (
+            <div
+              key={instructor._id}
+              className="card shadow-md rounded-2xl flex border my-4 hover:shadow-lg transition-scale duration-300 hover:cursor-pointer hover:scale-90"
+            >
+              <div className="w-full p-4">
+                <h1 className="font-bold text-lg">{instructor.name}</h1>
+                <p>{instructor.email}</p>
+                <h2 className="text-xl mt-2">{instructor.location}</h2>
               </div>
             </div>
+          ))}
 
-            <h2 className="text-xl font-medium mt-2">
-              £{instructor.price || 0}/hr
+        {/* ❌ Case 2: No results */}
+        {hasSearched && results.length === 0 && (
+          <div className="col-span-2 text-center mt-10">
+            <h2 className="text-2xl font-semibold text-gray-600">
+              No instructors found
             </h2>
-
-            <button className="book-btn" onClick={() => handleBook(instructor._id)}>
-              <LuSearch className="text-xl mr-2" />
-              Book Instructor
-            </button>
+            <p className="text-gray-400 mt-2">
+              We currently don’t have instructors in "{search}". Try another
+              location.
+            </p>
           </div>
-        </div>
-      ))}
+        )}
       </div>
     </DashboardLayout>
   );
