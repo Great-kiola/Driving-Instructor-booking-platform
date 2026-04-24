@@ -10,7 +10,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 
 const SearchInstructors = () => {
-  const [location, setLocation] = useState("");
+  const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
 
   const handleClick = async (e) => {
@@ -18,7 +18,7 @@ const SearchInstructors = () => {
 
     try {
       
-      const res = await axiosInstance.get(API_PATHS.USERS.SEARCH_USERS(location), {
+      const res = await axiosInstance.get(API_PATHS.USERS.SEARCH_USERS(search), {
       });
       setResults(res.data);
     } catch (error) {
@@ -37,7 +37,7 @@ const SearchInstructors = () => {
     <DashboardLayout activeMenu="Search Instructors">
       {/* First layer */}
       <div className="card2 my-5">
-        <h2 className="text-3xl text-center"> Enter your location </h2>
+        <h2 className="text-3xl text-center"> Enter your Location </h2>
 
         <div className="search-bar bg-[#edf0f2] rounded-full mt-8">
           <form
@@ -46,9 +46,9 @@ const SearchInstructors = () => {
           >
             <input
               type="text"
-              placeholder="Enter your location"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
+              placeholder="Enter your Location"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
               className="w-full p-5 focus:outline-none ml-5 text-lg"
             />
 
