@@ -98,8 +98,8 @@ const SearchInstructors = () => {
                   </div>
 
                   <div className="price">
-                    <p>Rate /hr</p>
-                    <p class="amount">${results.price || 25}</p>
+                    <p className="text-xl">Rate /hr</p>
+                    <p className="text-primary font-semibold text-3xl">${results.price || 25}</p>
                   </div>
                 </div>
 
