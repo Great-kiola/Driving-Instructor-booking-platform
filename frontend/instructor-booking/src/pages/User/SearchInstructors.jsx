@@ -4,8 +4,11 @@ import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 
 import { LuSearch, LuTimer } from "react-icons/lu";
-import { FaLocationDot } from "react-icons/fa6";
+import { FaLocationArrow } from "react-icons/fa6";
 import { FaCar, FaStar } from "react-icons/fa";
+import { HiOutlineMail } from "react-icons/hi";
+
+
 
 const SearchInstructors = () => {
   const [search, setSearch] = useState("");
@@ -71,14 +74,14 @@ const SearchInstructors = () => {
       </div>
 
       {/* Second Layer */}
-      <div className="grid grid-cols-2 gap-4 my-5">
+      <div className="grid grid-cols-3 gap-4 my-5">
         {/* ✅ Case 1: Results exist */}
         {Array.isArray(results) &&
           results.length > 0 &&
           results.map((instructor) => (
             <div
               key={instructor._id}
-              className="card shadow-md rounded-2xl flex border my-4"
+              className="card shadow-md rounded-2xl flex border my-4 p-3"
             >
               <div className="w-full p-4">
                 <div className="mb-5">
@@ -94,7 +97,10 @@ const SearchInstructors = () => {
                     <h1 className="font-semibold text-[30px]">
                       {instructor.name}
                     </h1>
-                    <h2 className="">{instructor.location}</h2>
+                    <h2 className="flex items-center gap-2 font-normal text-xl">
+                      <FaLocationArrow />
+                      {instructor.location}
+                    </h2>
                   </div>
 
                   <div className="price">
@@ -103,16 +109,16 @@ const SearchInstructors = () => {
                   </div>
                 </div>
 
-                <p>{instructor.email}</p>
+                <p className="flex items-center gap-2 font-normal text-xl"> <HiOutlineMail /> {instructor.email}</p>
 
-                <div className="icons mt-7 flex items-center gap-4">
+                <div className="icons mt-7 flex items-center gap-4 rounded-3xl">
                   <p className="flex gap-2">
                     <FaCar className="text-2xl" />
                     <span className="">Manual</span>
                   </p>
 
                   <p className="flex gap-2 items-center">
-                    <FaStar />
+                    <FaStar className="text-2xl"/>
                     <span> 4.5</span>
                   </p>
                 </div>
