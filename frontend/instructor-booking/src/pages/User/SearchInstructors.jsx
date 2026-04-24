@@ -7,25 +7,25 @@ import {data} from "../../../src/data"
 
 // import axios from "axios";
 
-// import axiosInstance from "../../utils/axiosInstance";
+import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 
 const SearchInstructors = () => {
   const [search, setSearch] = useState("");
-  // const [results, setResults] = useState([]);
+  const [results, setResults] = useState([]);
 
-  // const handleClick = async (e) => {
-  //   e.preventDefault();
+  const getResults = async (e) => {
+    e.preventDefault();
 
-  //   try {
+    try {
       
-  //     const res = await axiosInstance.get(API_PATHS.USERS.SEARCH_USERS(search), {
-  //     });
-  //     setResults(res.data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+      const res = await axiosInstance.get(API_PATHS.USERS.SEARCH_USERS(search), {
+      });
+      setResults(res.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const updateSearch = (e) => {
     setSearch(e.target.value);
@@ -63,7 +63,7 @@ const SearchInstructors = () => {
         }).map((instructor) => (
         <div
           key={instructor._id}
-          className="card shadow-md rounded-2xl flex border my-4"
+          className="card shadow-md rounded-2xl flex border my-4 hover:shadow-lg transition-scale duration-300 hover:cursor-pointer hover:scale-90"
         >
 
           <div className="w-full p-4">
