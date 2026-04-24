@@ -107,7 +107,7 @@ const SearchInstructors = () => {
 
                 <div className="icons mt-7 flex items-center gap-4">
                   <p className="flex gap-2">
-                    <FaCar className="text-xl" />
+                    <FaCar className="text-2xl" />
                     <span className="">Manual</span>
                   </p>
 
