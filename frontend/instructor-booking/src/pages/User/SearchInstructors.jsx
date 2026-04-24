@@ -25,6 +25,7 @@ const SearchInstructors = () => {
 
     if (!search.trim()) {
       setResults([]);
+      setHasSearched(false);
       return;
     }
 
