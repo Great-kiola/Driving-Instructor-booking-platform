@@ -15,49 +15,30 @@ const SearchInstructors = () => {
   const [results, setResults] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
 
-  const updateSearch = async (e) => {
-    const value = e.target.value;
-    setSearch(value);
+const updateSearch = async (e) => {
+  const value = e.target.value;
+  setSearch(value);
+  setHasSearched(true); // ✅ THIS FIXES YOUR ISSUE
 
-    if (!value.trim()) {
-      setResults([]);
-      return;
-    }
+  if (!value.trim()) {
+    setResults([]);
+    setHasSearched(false); // optional: reset when empty
+    return;
+  }
 
-    try {
-      const res = await axiosInstance.get(API_PATHS.USERS.SEARCH_USERS(value));
-      setResults(res.data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  try {
+    const res = await axiosInstance.get(
+      API_PATHS.USERS.SEARCH_USERS(value)
+    );
 
-  const getResults = async (e) => {
-    e.preventDefault();
-    setHasSearched(true);
+    // 🔥 IMPORTANT: ensure it's always an array
+    setResults(Array.isArray(res.data) ? res.data : []);
+  } catch (err) {
+    console.error(err);
+    setResults([]);
+  }
+};
 
-    try {
-      const res = await axiosInstance.get(API_PATHS.USERS.SEARCH_USERS(search));
-
-      setResults(res.data);
-    } catch (error) {
-      console.error(error);
-      setResults([]); // fallback
-    }
-  };
-
-  useEffect(() => {
-    const delay = setTimeout(() => {
-      if (search) {
-        axiosInstance
-          .get(API_PATHS.USERS.SEARCH_USERS(search))
-          .then((res) => setResults(res.data))
-          .catch(console.error);
-      }
-    }, 1000);
-
-    return () => clearTimeout(delay);
-  }, [search]);
 
   const handleBook = (instructorId) => {
     // Implementation for booking an instructor
@@ -100,7 +81,7 @@ const SearchInstructors = () => {
           ))}
 
         {/* ❌ Case 2: No results */}
-        {hasSearched && results.length === 0 && (
+        {hasSearched && Array.isArray(results) && results.length === 0 && (
           <div className="col-span-2 text-center mt-10">
             <h2 className="text-2xl font-semibold text-gray-600">
               No instructors found
