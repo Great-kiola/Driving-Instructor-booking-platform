@@ -39,11 +39,11 @@ const SearchInstructors = () => {
     }
   };
 
-  const handleBook = (instructorId) => {
-    // Implementation for booking an instructor
-    console.log("Booking instructor with ID:", instructorId);
-    alert(`Booking instructor with ID: ${instructorId}`);
-  };
+  // const handleBook = (instructorId) => {
+  //   // Implementation for booking an instructor
+  //   console.log("Booking instructor with ID:", instructorId);
+  //   alert(`Booking instructor with ID: ${instructorId}`);
+  // };
 
   return (
     <DashboardLayout activeMenu="Search Instructors">
