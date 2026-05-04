@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
-import InstructorCard from "../../components/cards/InstructorCard";
 
 import { LuSearch, LuTimer } from "react-icons/lu";
 import { FaLocationArrow } from "react-icons/fa6";
@@ -73,13 +72,6 @@ const SearchInstructors = () => {
       </div>
 
       {/* Second Layer */}
-      <div className="grid gap-4 mt-6">
-        {results.map((instructor) => (
-          <InstructorCard key={instructor._id} instructor={instructor} />
-        ))}
-      </div>
-
-      
       <div className="grid grid-cols-3 gap-4 my-5">
         {/* ✅ Case 1: Results exist */}
         {Array.isArray(results) &&
