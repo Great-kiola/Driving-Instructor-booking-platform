@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import DashboardLayout from "../../components/layouts/DashboardLayout";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
+import InstructorCard from "../../components/cards/InstructorCard";
 
 import { LuSearch, LuTimer } from "react-icons/lu";
 import { FaLocationArrow } from "react-icons/fa6";
 import { FaCar, FaStar } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
-
-
 
 const SearchInstructors = () => {
   const [search, setSearch] = useState("");
@@ -74,6 +73,13 @@ const SearchInstructors = () => {
       </div>
 
       {/* Second Layer */}
+      <div className="grid gap-4 mt-6">
+        {results.map((instructor) => (
+          <InstructorCard key={instructor._id} instructor={instructor} />
+        ))}
+      </div>
+
+      
       <div className="grid grid-cols-3 gap-4 my-5">
         {/* ✅ Case 1: Results exist */}
         {Array.isArray(results) &&
@@ -105,11 +111,16 @@ const SearchInstructors = () => {
 
                   <div className="price">
                     <p className="text-xl">Rate /hr</p>
-                    <p className="text-primary font-semibold text-3xl">${results.price || 25}</p>
+                    <p className="text-primary font-semibold text-3xl">
+                      ${results.price || 25}
+                    </p>
                   </div>
                 </div>
 
-                <p className="flex items-center gap-2 font-normal text-xl"> <HiOutlineMail /> {instructor.email}</p>
+                <p className="flex items-center gap-2 font-normal text-xl">
+                  {" "}
+                  <HiOutlineMail /> {instructor.email}
+                </p>
 
                 <div className="icons mt-7 flex items-center gap-4 rounded-3xl">
                   <p className="flex gap-2">
@@ -118,7 +129,7 @@ const SearchInstructors = () => {
                   </p>
 
                   <p className="flex gap-2 items-center">
-                    <FaStar className="text-2xl"/>
+                    <FaStar className="text-2xl" />
                     <span> 4.5</span>
                   </p>
                 </div>
